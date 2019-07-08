@@ -68,46 +68,33 @@ public class StringsAndThings {
      */
     public Boolean containsEqualNumberOfIsAndNot(String input) {
 
-        Boolean myAns = false;
-
-        String strIs = "is";
-        String strNot = "not";
-
         Integer sumIs = 0;
         Integer sumNot = 0;
 
-        int M = strIs.length();
-        int N = input.length();
+        for (int i = 0; i < input.length()-1; i++) {
 
-        for (int i = 0; i <= N - M; i++) {
+            if ((input.charAt(i) == 'i') && (input.charAt(i + 1) == 's')) {
 
-            if (input.charAt(i) == strIs.charAt(0)) {
-                if (input.charAt(i + 1) == strIs.charAt(1)) {
-                    sumIs = sumIs + 1;
-                }
+                sumIs++;
+
             }
         }
 
-            // =======================================
+            for (int i = 0; i < input.length()-2; i++) {
 
-            M = strNot.length();
-            N = input.length();
+                if ((input.charAt(i) == 'n') && (input.charAt(i + 1) == 'o') && (input.charAt(i + 2) == 't')) {
 
-            for (int i = 0; i <= N - M; i++) {
-                if (input.charAt(i) == strNot.charAt(0)) {
+                    sumNot++;
 
-                    if (input.charAt(i + 1) == strNot.charAt(1)) {
-
-                        if (input.charAt(i + 2) == strNot.charAt(2)) {
-                            sumNot = sumNot + 1;
-                        }
-                    }
                 }
             }
 
-            if (sumIs == sumNot) myAns = true;
-
-            return myAns;
+            if (sumIs == sumNot) {
+                return true;
+            }
+            else {
+                return false;
+            }
     }
 
         /**
@@ -120,13 +107,14 @@ public class StringsAndThings {
          */
         public Boolean gIsHappy (String input){
 
-            String myStr[] = input.split("");
             Boolean Happy = true;
 
             for (Integer i = 1; i < input.length()-1 ;  i++) {
 
-                if (myStr[i] == "g") {
-                    if ((myStr[i-1] != "g") && (myStr[i+1] != "g")) Happy = false;
+                if (input.charAt(i) == 'g') {
+                    if ((input.charAt(i-1) != 'g') && (input.charAt(i+1) != 'g')) {
+                        Happy = false;
+                    }
                 }
             }
             return Happy;
@@ -142,19 +130,19 @@ public class StringsAndThings {
          */
         public Integer countTriple (String input) {
 
-            String myStr[] = input.split("");
             Integer myAns = 0;
 
             if (input.length() < 3) {
-                myAns = 0;
+                return 0;
             }
-            else {
-                for (Integer i = 0; i < input.length()-2; i++) {
-                    if ((myStr[i] == myStr[i+1]) && (myStr[i] == myStr[i+2])) {
-                        myAns++;
-                    }
+
+            for (Integer i = 0; i < input.length() - 2; i++) {
+
+                if ((input.charAt(i+1) == input.charAt(i)) && (input.charAt(i+2) == input.charAt(i))) {
+                    myAns++;
                 }
             }
+
             return myAns;
         }
 
